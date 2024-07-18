@@ -1,0 +1,1 @@
+curl -H "my-header: canary" 211.183.3.10:31380
