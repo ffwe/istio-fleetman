@@ -1,0 +1,1 @@
+while true; do curl http://211.183.3.10:30080/api/vehicles/driver/City%20Truck; echo; sleep 0.5; done
