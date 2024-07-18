@@ -22,7 +22,7 @@ spec:
   trafficPolicy: 
     loadBalancer:
       consistentHash:
-       useSourceIp: true
+        httpHeaderName: "x-myval"
   subsets:
     - labels: # SELECTOR.
         app: staff-service # find pods with label "safe"
