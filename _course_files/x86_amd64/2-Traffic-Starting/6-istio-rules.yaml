@@ -9,13 +9,13 @@ spec:
   http:
     - route:
         - destination:
-            host: fleetlt.default.svc.cluster.local # The Target DNS name
+            host: fleetman-staff-service.default.svc.cluster.local # The Target DNS name
             subset: safe-group # The name defined in the DestinationRule
-          weight: 50
+          weight: 90
         - destination:
             host: fleetman-staff-service.default.svc.cluster.local # The Target DNS name
             subset: risky-group # The name defined in the DestinationRule
-          weight: 50
+          weight: 10
 ---
 kind: DestinationRule # Defining which pods should be port each subset
 apiVersion: networking.istio.io/v1alpha3
@@ -24,7 +24,10 @@ metadata:
   namespace: default
 spec:
   host: fleetman-staff-service.default.svc.cluster.local
-  trafficPolicy: ~
+  trafficPolicy: 
+    loadBalancer:
+      consistenHash:
+       useSourceIp: true
   subsets:
     - labels: # SELECTOR.
         version: safe # find pods with label "safe"
