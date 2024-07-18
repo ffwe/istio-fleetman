@@ -11,11 +11,11 @@ spec:
         - destination:
             host: fleetman-staff-service.default.svc.cluster.local
             subset: safe
-          weight: 0
+          weight: 10
         - destination:
             host: fleetman-staff-service.default.svc.cluster.local
             subset: risky
-          weight: 100
+          weight: 90
 ---
 kind: DestinationRule
 apiVersion: networking.istio.io/v1alpha3
