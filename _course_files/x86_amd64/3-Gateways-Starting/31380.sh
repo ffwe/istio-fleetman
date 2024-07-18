@@ -1,0 +1,1 @@
+while true; do curl -s 211.183.3.10:31380 | grep title; sleep 0.5; done
