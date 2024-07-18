@@ -70,7 +70,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp
+  name: webapp-experimental
 spec:
   selector:
     matchLabels:
@@ -80,11 +80,11 @@ spec:
     metadata:
       labels:
         app: webapp
-        version: original
+        version: experimental
     spec:
       containers:
       - name: webapp
-        image: richardchesterwood/istio-fleetman-webapp-angular:6
+        image: richardchesterwood/istio-fleetman-webapp-angular:6-experimental
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
