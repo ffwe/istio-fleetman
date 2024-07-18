@@ -24,15 +24,22 @@ spec:
   gateways: 
     - ingress-gateway-configuration
   http:
-    - route:
-        - destination:
-            host: fleetman-webapp.default.svc.cluster.local
-            subset: original
-          weight: 90
-        - destination:
-            host: fleetman-webapp.default.svc.cluster.local
-            subset: experimental
-          weight: 10
+    - match: 
+      - uri: # IF
+          prefix: "/experimental"
+      - uri: # OR
+          prefix: "/canary"
+      route: # THEN
+      - destination:
+          host: fleetman-webapp.default.svc.cluster.local
+          subset: experimental
+    - match: 
+      - uri : 
+          prefix: "/"
+      route:
+      - destination:
+          host: fleetman-webapp.default.svc.cluster.local
+          subset: original
 ---
 kind: DestinationRule
 apiVersion: networking.istio.io/v1alpha3
