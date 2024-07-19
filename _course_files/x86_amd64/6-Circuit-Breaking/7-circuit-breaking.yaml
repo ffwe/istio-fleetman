@@ -7,7 +7,7 @@ spec:
 
   trafficPolicy:
     outlierDetection: # Circuit Breakers HAVE TO BE SWITCHED ON
-      maxEjectionPercent: 10
-      consecutive5xxErrors: 2
-      interval: 10s
+      consecutive5xxErrors: 300
+      interval: 5s
       baseEjectionTime: 30s
+      maxEjectionPercent: 10
